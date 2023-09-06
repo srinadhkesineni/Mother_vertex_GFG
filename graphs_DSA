@@ -1,0 +1,25 @@
+def dfs(adj, s, visited):
+    visited[s]=True
+    for u in adj[s]:
+        if visited[u]==False:
+            dfs(adj, u, visited)
+
+class Solution:
+
+    # Function to find a Mother Vertex in the Graph.
+    def findMotherVertex(self, V, adj):
+        visited=[False]*V  
+        res=-1
+        for i in range(V):
+             if visited[i]==False:
+                   dfs(adj,i,visited)
+                   res=i
+                
+        visited = [False] * V 
+        dfs(adj, res, visited)
+         
+            
+        if all(visited): 
+            return res
+         
+        return -1
